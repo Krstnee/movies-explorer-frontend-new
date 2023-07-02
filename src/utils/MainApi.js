@@ -7,17 +7,6 @@ function checkResponse(res) {
   return Promise.reject(res);
 }
 
-export function register(name, email, password) {
-  return fetch(`${MY_URL}/signup`, {
-    method: "POST",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify({name, email, password})
-  })
-    .then(checkResponse)
-    .then((res) => {
-      return res;
-    })
-}
 
 export function authorise(email, password) {
   return fetch(`${MY_URL}/signin`, {
@@ -46,6 +35,18 @@ export function checkTok(token) {
     .then(checkResponse)
 }
 
+export function register(name, email, password) {
+  return fetch(`${MY_URL}/signup`, {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({name, email, password})
+  })
+    .then(checkResponse)
+    .then((res) => {
+      return res;
+    })
+}
+
 export function updateProfile(name, email) {
   const token = localStorage.getItem("token");
   return fetch(`${MY_URL}/users/me`, {
@@ -58,6 +59,21 @@ export function updateProfile(name, email) {
     body: JSON.stringify({name, email})
   })
     .then(checkResponse)
+}
+
+export function deleteMovie(id) {
+  const token = localStorage.getItem("token");
+  return fetch(`${MY_URL}/movies/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    }
+  })
+    .then(checkResponse)
+    .then((res) => {
+      return res;
+    })
 }
 
 export function saveMovie(movie) {
@@ -83,21 +99,6 @@ export function saveMovie(movie) {
     })
   })
     .then(checkResponse)
-}
-
-export function deleteMovie(id) {
-  const token = localStorage.getItem("token");
-  return fetch(`${MY_URL}/movies/${id}`, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${token}`
-    }
-  })
-    .then(checkResponse)
-    .then((res) => {
-      return res;
-    })
 }
 
 export function getAllSavedMovies() {
