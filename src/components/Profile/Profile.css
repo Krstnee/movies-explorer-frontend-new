@@ -127,6 +127,10 @@
     font-weight: 500;
     color: #EE3465;
 }
+.profile__button_edit:disabled {
+    cursor: not-allowed;
+    color:#696969;
+}
 
 @media screen and (max-width: 1023px) and (min-width: 768px) {
     .profile__dev {
