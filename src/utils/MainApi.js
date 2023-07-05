@@ -59,6 +59,9 @@ export function updateProfile(name, email) {
     body: JSON.stringify({name, email})
   })
     .then(checkResponse)
+    .then((res) => {
+      return res;
+    })
 }
 
 export function deleteMovie(id) {

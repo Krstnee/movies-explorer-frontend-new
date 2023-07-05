@@ -122,7 +122,7 @@ function App() {
       .then((userInfo) => {
         setCurUser(userInfo);
         setResultOfEdit("Данные успешно изменены");
-        setTimeout(() => {setLoad(false)}, 700);
+        
       })
       .catch((err) => {
         console.log(`Ошибка: ${err.status}`);
@@ -130,7 +130,8 @@ function App() {
           ? setResultOfEdit("Пользователь с таким email уже существует")
           : setResultOfEdit("При обновлении произошла ошибка")
       })
-      .finally(()=> setTimeout(() => {setResultOfEdit("")}, 2000))
+      .finally(() => setLoad(false))
+  
   }
   function shortSavedMovHandle() { 
     setIsShortSavedMovies(!isShortSavedMovies);
