@@ -296,29 +296,13 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            <Route
-              path="/signin"
-              element={
-                <Login
-                  name="Виталий"
-                  email="pochta@yandex.ru"
-                  onLogin={loginHandle}
-                  errorOfLogin={errorOfLogin}
-                />
-              }
-            />
-            <Route
-              path="/signup"
-              element={
-                <Register
-                  name="Виталий"
-                  email="pochta@yandex.ru"
-                  onRegister={registerHandle}
-                  errorOfRegister={errorOfRegister}
-                />
-              }
-            />
-            <Route path="/*" element={<PageNotFound/>}/>
+            
+            
+          {loggedIn ? <Route path='*' element={<PageNotFound />} /> : <Route path='/signup' element={<Register name="Виталий"
+                  email="pochta@yandex.ru" onRegister={registerHandle} errorOfRegister={errorOfRegister} />} />}
+          {loggedIn ? <Route path='*' element={<PageNotFound />} /> : <Route path='/signin' element={<Login name="Виталий"
+                  email="pochta@yandex.ru" onLogin={loginHandle} errorOfLogin={errorOfLogin} />} />}
+            <Route path="*" element={<PageNotFound/>}/>
           </Routes>
         )}
       </div>
